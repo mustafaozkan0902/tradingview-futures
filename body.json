@@ -4,8 +4,6 @@
   "price": "{{strategy.order.price}}",
   "side": "{{strategy.order.comment}}",
   "quantity": "250",
-  "telegramBotApi": "5540201409:AAG-35AKlGvl6JVodME1SCATWp3isMyn-b0",
-  "telegramUserId": "964255918",
   "binanceApiKey": "pZ8GyonG0AAZ8ClbH0RCXaC3OeVXHSboTTv0pIBbbDDvz50ZNuqW7PI4AAg2kG7s",
   "binanceSecretKey": "b4sn6R39sOLCoE2EXkkd0bFzXKEwm1kH8AlYwDwvRdJvvS7gbglonib8SptpuxjL"
 

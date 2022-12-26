@@ -2,4 +2,3 @@ flask
 gunicorn
 binance-connector
 binance-futures-connector
-pyTelegramBotAPI

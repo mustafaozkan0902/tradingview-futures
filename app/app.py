@@ -1,6 +1,5 @@
 from flask import Flask, request
 import json
-import telebot
 from binance.um_futures import UMFutures
 
 app = Flask(__name__)
@@ -13,8 +12,6 @@ def webhook():
         price = data['price']
         side = data['side']
         quantity = data['quantity']
-        telegramBotApi = data['telegramBotApi']
-        telegramUserId = data['telegramUserId']
         binanceApiKey = data['binanceApiKey']
         binanceSecretKey = data['binanceSecretKey']
         um_futures_client = UMFutures(binanceApiKey, binanceSecretKey)
@@ -68,8 +65,6 @@ def webhook():
         ÇOK YÜKSEK TE OLSA TAKE PROFİT KOYMAK LAZIM
         '''
 
-        telebot.TeleBot(telegramBotApi).send_message(telegramUserId,
-                                                     f"{ticker} {side}ING on {exchange} \nQuantity : {quantity} ")
     except:
         pass
     return {
