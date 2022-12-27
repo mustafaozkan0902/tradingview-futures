@@ -46,17 +46,17 @@ def webhook():
                 rnd = 4
             if side == "BUY":
                 stp_price = float(round((tempprice * 0.975), rnd))
-                tp_price = float(round((tempprice * 1.1), rnd))
+                tp_price = float(round((tempprice * 1.15), rnd))
                 stp_side = "SELL"
             elif side == "SELL":
                 stp_price = float(round((tempprice * 1.025), rnd))
-                tp_price = float(round((tempprice * 0.9), rnd))
+                tp_price = float(round((tempprice * 0.85), rnd))
                 stp_side = "BUY"
-            enterOrder()
-        def enterOrder():
+            enterOrder(sp = stp_price, ss = stp_side, tp = tp_price )
+        def enterOrder(sp, ss, tp):
             um_futures_client.new_order(symbol=ticker[:-4], side=side, type="MARKET", quantity=quantity, )
-            um_futures_client.new_order(symbol=ticker[:-4], side=stp_side, type="STOP_MARKET", stopPrice=stp_price, quantity=quantity,closePosition="true", timeInForce="GTC")
-            #um_futures_client.new_order(symbol=ticker[:-4], side=stp_side, type="TAKE_PROFIT_MARKET", stopPrice=tp_price, quantity=quantity,closePosition="true", timeInForce="GTC")
+            um_futures_client.new_order(symbol=ticker[:-4], side=ss, type="STOP_MARKET", stopPrice=sp, quantity=quantity,closePosition="true", timeInForce="GTC")
+            um_futures_client.new_order(symbol=ticker[:-4], side=ss, type="TAKE_PROFIT_MARKET", stopPrice=tp, quantity=quantity,closePosition="true", timeInForce="GTC")
 
 
         openOrderInfo()
