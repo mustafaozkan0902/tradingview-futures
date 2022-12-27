@@ -56,7 +56,7 @@ def webhook():
         def enterOrder():
             um_futures_client.new_order(symbol=ticker[:-4], side=side, type="MARKET", quantity=quantity, )
             um_futures_client.new_order(symbol=ticker[:-4], side=stp_side, type="STOP_MARKET", stopPrice=stp_price, quantity=quantity,closePosition="true", timeInForce="GTC")
-            um_futures_client.new_order(symbol=ticker[:-4], side=stp_side, type="TAKE_PROFIT_MARKET", stopPrice=tp_price, quantity=quantity,closePosition="true", timeInForce="GTC")
+            #um_futures_client.new_order(symbol=ticker[:-4], side=stp_side, type="TAKE_PROFIT_MARKET", stopPrice=tp_price, quantity=quantity,closePosition="true", timeInForce="GTC")
 
 
         openOrderInfo()
