@@ -27,6 +27,7 @@ def webhook():
             poz_info = um_futures_client.get_position_risk(symbol=ticker[:-4], recvWindow=2000)
             poz_amount = float(poz_info[0]['positionAmt'])
             if poz_amount == 0:
+                um_futures_client.cancel_open_orders(symbol=ticker[:-4], recvWindow=2000, timeInForce="GTC")
                 stopInfo()
             elif poz_amount > 0:
                 um_futures_client.new_order(symbol=ticker[:-4], side="SELL", type="MARKET", quantity=abs(poz_amount))
@@ -40,10 +41,14 @@ def webhook():
             tempprice = float(price)
             if tempprice > 9:
                 rnd = 2
-            elif tempprice > 1 & price <= 9:
-                rnd = 3
-            elif tempprice < 1:
-                rnd = 4
+            else:
+                if tempprice>=1:
+                    rnd = 3
+                else:
+                    if tempprice>=0.1:
+                        rnd = 4
+                    else:
+                        rnd = 5
             if side == "BUY":
                 stp_price = float(round((tempprice * 0.975), rnd))
                 tp_price = float(round((tempprice * 1.15), rnd))
